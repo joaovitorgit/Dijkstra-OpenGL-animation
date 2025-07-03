@@ -7,15 +7,37 @@ A 2D visualization of Dijkstra's shortest path algorithm implemented in C using 
 - **Interactive Graph Creation**: Click to place nodes (houses) and create edges between them
 - **Real-time Animation**: Watch Dijkstra's algorithm execute step-by-step with visual feedback
 - **Distance Calculation**: Automatic distance calculation between connected nodes
-- **Visual Path Highlighting**: The shortest path is highlighted in red during execution
+- **Visual Path Highlighting**: The shortest path is highlighted in green during execution
 - **House-themed Nodes**: Nodes are represented as colorful houses for better visualization
 - **Maximum 26 Nodes**: Support for up to 26 nodes (A-Z labeling)
+- **Modular Architecture**: Clean, well-structured code with separation of concerns
+
+## Project Structure
+
+```
+Dijkstra-OpenGL-animation/
+├── include/                 # Header files
+│   ├── constants.h         # Global constants and definitions
+│   ├── graph.h            # Graph data structures and operations
+│   ├── renderer.h         # OpenGL rendering functions
+│   ├── dijkstra.h         # Algorithm implementation
+│   └── input.h            # User input handling
+├── src/                   # Source files
+│   ├── main.c            # Main application entry point
+│   ├── graph.c           # Graph operations implementation
+│   ├── renderer.c        # Rendering implementation
+│   ├── dijkstra.c        # Algorithm implementation
+│   └── input.c           # Input handling implementation
+├── Makefile              # Build configuration
+├── README.md             # This file
+└── Trabalho Prático 2.pdf  # Original assignment (Portuguese)
+```
 
 ## Prerequisites
 
 Before running this project, make sure you have the following installed:
 
-- **GCC/G++ Compiler**
+- **GCC Compiler**
 - **OpenGL Development Libraries**
 - **GLUT (OpenGL Utility Toolkit)**
 - **GLEW (OpenGL Extension Wrangler Library)**
@@ -48,56 +70,64 @@ make
 
 ### Manual Compilation:
 ```bash
-g++ dijkstra.c -o dijkstra -lglut -lGL -lGLU -lGLEW
+gcc -Wall -Wextra -std=c99 -Iinclude src/*.c -o dijkstra -lglut -lGL -lGLU -lGLEW
 ./dijkstra
 ```
+
+### Build Options:
+- `make clean` - Remove build artifacts
+- `make install-deps` - Install dependencies (Ubuntu/Debian)
+- `make install-deps-mac` - Install dependencies (macOS)
+- `make install-deps-centos` - Install dependencies (CentOS/RHEL)
 
 ## How to Use
 
 ### Creating the Graph:
 1. **Add Nodes**: Click anywhere in the window to place a house (node)
 2. **Create Edges**: Click on an existing node, then click on another node to create an edge between them
-3. **Set Source**: Press 'S' and click on a node to set it as the starting point
-4. **Set Destination**: Press 'D' and click on a node to set it as the destination
+3. **Set Source**: Right-click on a node to set it as the starting point
+4. **Set Destination**: Right-click on another node to set it as the destination
 
 ### Running Dijkstra's Algorithm:
-- Press 'R' to start the algorithm animation
+- Press **Enter** to start the algorithm animation
 - Watch as the algorithm explores nodes and finds the shortest path
-- The shortest path will be highlighted in red
+- The shortest path will be highlighted in green
 
 ### Controls:
-- **Mouse Click**: Place nodes or select nodes for edges
-- **'S' Key**: Set source node (starting point)
-- **'D' Key**: Set destination node (end point)
-- **'R' Key**: Run Dijkstra's algorithm
-- **'C' Key**: Clear the graph and start over
-- **'Q' Key**: Quit the application
+- **Left Mouse Click**: Place nodes or select nodes for edges
+- **Right Mouse Click**: Set source/destination nodes
+- **Enter Key**: Run Dijkstra's algorithm
+- **C Key**: Clear the graph and start over
+- **Q Key**: Quit the application
 
 ## Algorithm Visualization
 
 The animation shows:
 - **Gray Edges**: Regular connections between nodes
-- **Red Edges**: Current shortest path being explored
+- **Light Gray Edges**: Current path being explored
+- **Green Edges**: Final shortest path
 - **Distance Labels**: Euclidean distance between connected nodes
 - **Step-by-step Execution**: Visual feedback of the algorithm's progress
 
 ## Technical Details
 
-- **Language**: C with OpenGL
+- **Language**: C99 with OpenGL
+- **Architecture**: Modular design with separate concerns
 - **Maximum Nodes**: 26 (labeled A-Z)
 - **Window Size**: 1080x1020 pixels
 - **Node Representation**: Houses with roofs, doors, and windows
 - **Distance Calculation**: Euclidean distance between node centers
+- **Animation Delays**: Configurable timing for visual effects
 
-## Project Structure
+## Code Organization
 
-```
-Dijkstra-OpenGL-animation/
-├── dijkstra.c          # Main source code
-├── Makefile           # Build configuration
-├── README.md          # This file
-└── Trabalho Prático 2.pdf  # Original assignment (Portuguese)
-```
+The project follows a clean modular architecture:
+
+- **Graph Module**: Handles graph data structures and operations
+- **Renderer Module**: Manages all OpenGL rendering and visualization
+- **Dijkstra Module**: Implements the shortest path algorithm
+- **Input Module**: Processes user interactions and events
+- **Constants**: Centralized configuration and definitions
 
 ## License
 
